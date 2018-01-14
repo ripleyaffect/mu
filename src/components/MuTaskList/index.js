@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { black, grey } from 'styling/vars'
 
 const Container = styled.div`
+  margin-bottom: 24px;
   font-size: 18px;
   font-weight: 400;
 `

@@ -15,7 +15,7 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   background-color: ${purple};
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 15px;
   font-weight: 500;
   box-shadow: 0 1px 10px ${Color(purple).alpha(0.25).string()};

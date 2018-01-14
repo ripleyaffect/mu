@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import MuTaskList from 'components/MuTaskList'
+import MuProgramTask from 'components/MuProgramTask'
 
 import Header from './Header'
 
@@ -15,6 +16,9 @@ const MuDay = () => (
   <Container>
     <Header />
     <MuTaskList />
+    <MuProgramTask />
+    <MuProgramTask />
+    <MuProgramTask />
   </Container>
 )
 

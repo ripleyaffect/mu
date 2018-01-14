@@ -11,7 +11,7 @@ const Container = styled.div`
 
   width: 200px;
   padding-top: 12px;
-  margin-left: 24px;
+  margin-left: 36px;
 `
 
 const MuSecondary = () => (
