@@ -4,21 +4,29 @@ import styled from 'styled-components'
 import MuDay from 'components/MuDay'
 import MuSecondary from 'components/MuSecondary'
 
-const Container = styled.div`
+const OuterContainer = styled.div`
   display: flex;
+  justify-content: center;
+  overflow-y: scroll;
   flex: 1;
+  width: 100%;
+`
+
+const InnerContainer = styled.div`
+  display: flex;
 
   max-width: 100%;
   width: 900px;
   padding-top: 48px;
-  overflow-y: scroll;
 `
 
 const MuBody = () => (
-  <Container>
-    <MuDay />
-    <MuSecondary />
-  </Container>
+  <OuterContainer>
+    <InnerContainer>
+      <MuDay />
+      <MuSecondary />
+    </InnerContainer>
+  </OuterContainer>
 )
 
 

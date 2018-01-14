@@ -34,7 +34,24 @@ const Icon = styled.div`
 `
 
 const DetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   flex: 1;
+  margin-left: 12px;
+`
+
+const DisplayName = styled.span`
+  margin-bottom: 4px;
+  color: ${black};
+  font-size: 18px;
+  font-weight: 400;
+`
+
+const ProgramDisplayName = styled.span`
+  color: ${grey};
+  font-size: 13px;
+  font-weight: 500;
 `
 
 const Button = styled.span`
@@ -55,7 +72,10 @@ const Button = styled.span`
 const MuProgramTask = () => (
   <Container>
     <Icon />
-    <DetailsContainer />
+    <DetailsContainer>
+      <DisplayName>Test</DisplayName>
+      <ProgramDisplayName>Test Program</ProgramDisplayName>
+    </DetailsContainer>
     <Button>Details</Button>
   </Container>
 )
