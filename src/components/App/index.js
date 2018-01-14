@@ -1,7 +1,8 @@
 import React from 'react'
-import { injectGlobal } from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
 import normalize from 'styled-normalize'
 
+import MuBody from 'components/MuBody'
 import MuHeader from 'components/MuHeader'
 
 // Define global styles
@@ -13,11 +14,19 @@ const globalStyles = injectGlobal`
   }
 `
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+`
+
 const App = () => (
-  <div className="app">
+  <Container>
     {globalStyles}
     <MuHeader />
-  </div>
+    <MuBody />
+  </Container>
 )
 
 export default App

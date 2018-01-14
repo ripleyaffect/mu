@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Logo from 'components/Logo'
+import MuLogo from 'components/MuLogo'
 import { black, grey, purple, white } from 'styling/vars'
 
 const Item = styled.span`
@@ -22,7 +22,7 @@ const Container = styled.div`
 
 const Left = () => (
   <Container>
-    <Logo />
+    <MuLogo />
     <Item selected>Today</Item>
     <Item>Programs</Item>
   </Container>

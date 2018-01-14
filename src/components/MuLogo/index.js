@@ -3,7 +3,7 @@ import React from 'react'
 const DEFAULT_COLOR = '#2B2B2B'
 const DEFAULT_SIZE = 32
 
-const Logo = ({ color, size }) => {
+const MuLogo = ({ color, size }) => {
   color = color || DEFAULT_COLOR
   size = size || DEFAULT_SIZE
   return <svg width={`${size}px`} height={`${size}px`} viewBox={`0 0 ${size} ${size}`} version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -14,4 +14,4 @@ const Logo = ({ color, size }) => {
   </svg>
 }
 
-export default Logo
+export default MuLogo

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Avatar from 'components/Avatar'
+import MuAvatar from 'components/MuAvatar'
 import PostButton from 'components/PostButton'
 
 const Container = styled.div`
@@ -12,7 +12,7 @@ const Container = styled.div`
 const Right = () => (
   <Container>
     <PostButton />
-    <Avatar />
+    <MuAvatar />
   </Container>
 )
 

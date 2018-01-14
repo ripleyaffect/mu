@@ -19,10 +19,10 @@ const Circle = styled.div`
   box-shadow: 0 1px 10px ${Color(black).alpha(0.15).string()};
 `
 
-const Avatar = ({ initials }) => (
+const MuAvatar = ({ initials }) => (
   <Circle>
     {initials || 'TP'}
   </Circle>
 )
 
-export default Avatar
+export default MuAvatar
