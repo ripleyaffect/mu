@@ -2,7 +2,7 @@ import Color from 'color'
 import React from 'react'
 import styled from 'styled-components'
 
-import { black } from 'styling/vars'
+import { black, blackBoxShadow } from 'styling/vars'
 
 const Circle = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ const Circle = styled.div`
   font-family: 'Work Sans', sans-serif;
   font-size: 15px;
   font-weight: 500;
-  box-shadow: 0 1px 10px ${Color(black).alpha(0.15).string()};
+  box-shadow: ${blackBoxShadow};
 `
 
 const MuAvatar = ({ initials }) => (

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { colorMap, purple, white } from 'styling/vars'
+import { colorMap, purple, purpleBoxShadow, white } from 'styling/vars'
 
 const Container = styled.div`
   display: flex;
@@ -23,6 +23,7 @@ const Day = styled.span`
   font-weight: 400;
 
   background-color: ${({ active }) => active ? purple : white};
+  box-shadow: ${({ active }) => active ? purpleBoxShadow : 'none'};
   color: ${({ active, color }) => active ? white : colorMap[color]};
 `
 

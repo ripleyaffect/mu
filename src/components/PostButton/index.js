@@ -2,7 +2,7 @@ import Color from 'color'
 import React from 'react'
 import styled from 'styled-components'
 
-import { purple } from 'styling/vars'
+import { darkPurple, purple, purpleBoxShadow } from 'styling/vars'
 
 const Button = styled.button`
   display: flex;
@@ -18,11 +18,10 @@ const Button = styled.button`
   border-radius: 6px;
   font-size: 15px;
   font-weight: 500;
-  box-shadow: 0 1px 10px ${Color(purple).alpha(0.25).string()};
-  transition: transform 0.17s ease-in-out;
+  box-shadow: ${purpleBoxShadow};
 
   :hover {
-    transform: scale(1.1);
+    background-color: ${darkPurple};
   }
 `
 
