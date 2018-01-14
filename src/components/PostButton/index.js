@@ -20,7 +20,8 @@ const Button = styled.button`
   font-weight: 500;
   box-shadow: ${purpleBoxShadow};
 
-  :hover {
+  :hover, :focus {
+    outline: none;
     background-color: ${darkPurple};
   }
 `

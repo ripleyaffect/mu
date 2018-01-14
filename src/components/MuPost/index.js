@@ -2,13 +2,24 @@ import React from 'react'
 import styled from 'styled-components'
 
 import MuAvatar from 'components/MuAvatar'
-import { grey } from 'styling/vars'
+import { grey, lightGrey } from 'styling/vars'
 
 const Container = styled.div`
   display: flex;
+  position: relative;
   width: 100%;
   margin-left: 19px;
   padding-bottom: 36px;
+`
+
+const Connector = styled.span`
+  position: absolute;
+  top: 38px;
+  left: 17px;
+  height: calc(100% - 40px);
+  width: 3px;
+  background-color: ${lightGrey};
+  border-radius: 5px;
 `
 
 const DetailsContainer = styled.div`
@@ -31,8 +42,9 @@ font-size: 13px;
 font-weight: 500;
 `
 
-const MuPost = () => (
+const MuPost = ({ isLast }) => (
   <Container>
+    {!isLast && <Connector />}
     <MuAvatar />
     <DetailsContainer>
       <Content>Test test test</Content>

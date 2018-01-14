@@ -5,8 +5,8 @@ import MuLogo from 'components/MuLogo'
 import { black, grey, purple, white } from 'styling/vars'
 
 const Item = styled.span`
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 24px;
+  padding-bottom: 24px;
   border-bottom: 3px ${({ selected }) => selected ? purple : white} solid;
   margin-left: 36px;
   color: ${({ selected }) => selected ? black : grey};

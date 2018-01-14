@@ -25,20 +25,30 @@ const Input = styled.input`
   }
 `
 
-const Task = styled.p`
+const Task = styled.button`
+  display: block;
+  padding: 0;
+  border: none;
   margin-top: 12px;
   margin-bottom: 24px;
+  background: none;
   color: ${black};
+  cursor: pointer;
   font-size: 18px;
   font-weight: 400;
+
+  :hover, :focus {
+    outline: none;
+    text-decoration: line-through;
+  }
 `
 
-const MuTaskList = () => (
+const MuTaskList = ({ tasks }) => (
   <Container>
     <Input placeholder="Add a task" />
-    <Task>Task one</Task>
-    <Task>Task two</Task>
-    <Task>Task three</Task>
+    {tasks.map(({ content, id }) => <Task key={id}>
+      {content}&nbsp;
+    </Task>)}
   </Container>
 )
 
