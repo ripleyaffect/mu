@@ -1,11 +1,17 @@
-{
-  tasks: allTasks(orderBy: createdAt_ASC) {
+query today($completedAt: DateTime) {
+  # We pass an empty variable for NULL
+  tasks: allTasks(
+    filter: { completedAt: $completedAt }
+    orderBy: createdAt_ASC
+  ) {
     id
     createdAt
     content
   }
 
-  posts: allPosts(orderBy: createdAt_DESC) {
+  posts: allPosts(
+    orderBy: createdAt_DESC
+  ) {
     id
     createdAt
     content

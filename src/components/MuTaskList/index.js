@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo'
 
+import MuTask from 'components/MuTask'
 import createTaskMutation from '~graphql/mutations/createTask.gql'
 import todayQuery from '~graphql/queries/today.gql'
 import { black, grey } from 'styling/vars'
@@ -28,25 +29,6 @@ const Input = styled.input`
   }
 `
 
-const Task = styled.button`
-  display: block;
-  padding: 0;
-  border: none;
-  margin-top: 12px;
-  margin-bottom: 24px;
-  background: none;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 400;
-  color: ${({ optimistic }) => optimistic ? grey : black};
-  pointer-events: ${({ optimistic }) => optimistic ? 'none' : 'auto'};
-
-  :hover, :focus {
-    outline: none;
-    text-decoration: line-through;
-  }
-`
-
 class MuTaskList extends Component {
   constructor (props) {
     super(props)
@@ -64,7 +46,6 @@ class MuTaskList extends Component {
   handleSubmit (event) {
     event.preventDefault()
 
-    console.log(this.state.newTask)
     this.props.mutate({
       mutation: createTaskMutation,
       variables: { content: this.state.newTask },
@@ -77,12 +58,19 @@ class MuTaskList extends Component {
         }
       },
       update: (proxy, { data: { task } }) => {
-        const data = proxy.readQuery({ query: todayQuery });
+        const data = proxy.readQuery({
+          query: todayQuery,
+          variables: { completedAt: null },
+        });
 
         // Add the task
         data.tasks.push(task);
 
-        proxy.writeQuery({ query: todayQuery, data });
+        proxy.writeQuery({
+          query: todayQuery,
+          variables: { completedAt: null },
+          data
+        });
       }
     })
 
@@ -101,11 +89,10 @@ class MuTaskList extends Component {
             placeholder="Add a task"
             value={newTask} />
       </form>
-      {tasks.map(({ content, id }) => <Task
-          key={id}
-          optimistic={id < 0}>
-        {content}
-      </Task>)}
+      {tasks.map(task => <MuTask
+          {...task}
+          key={task.id}
+          optimistic={task.id < 0} />)}
     </Container>
   }
 }

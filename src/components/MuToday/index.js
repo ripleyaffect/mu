@@ -80,4 +80,7 @@ class MuToday extends Component {
   }
 }
 
-export default graphql(todayQuery)(MuToday)
+export default graphql(
+  todayQuery,
+  { options: { variables: { completedAt: null } } }
+)(MuToday)
