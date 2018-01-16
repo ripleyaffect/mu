@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const Right = ({ onClickPost }) => (
   <Container>
-    <PostButton onClick={onClickPost} />
+    <PostButton marginRight={24} onClick={onClickPost} />
     <MuAvatar />
   </Container>
 )

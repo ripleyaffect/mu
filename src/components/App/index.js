@@ -4,7 +4,7 @@ import normalize from 'styled-normalize'
 
 import MuBody from 'components/MuBody'
 import MuHeader from 'components/MuHeader'
-import MuModal from 'components/MuModal'
+import MuPostModal from 'components/MuPostModal'
 
 // Define global styles
 const globalStyles = injectGlobal`
@@ -45,7 +45,7 @@ class App extends Component {
 
     return <Container>
       {globalStyles}
-      {addingPost && <MuModal onClose={this.closePostModal} />}
+      {addingPost && <MuPostModal onClose={this.closePostModal} />}
       <MuHeader onClickPost={this.openPostModal} />
       <MuBody />
     </Container>

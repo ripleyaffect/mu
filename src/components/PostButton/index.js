@@ -11,7 +11,7 @@ const Button = styled.button`
   height: 36px;
   width: 96px;
   border: none;
-  margin-right: 24px;
+  margin-right: ${({ marginRight }) => `${marginRight ? marginRight : 0}px`};
   color: white;
   cursor: pointer;
   background-color: ${purple};
@@ -26,8 +26,8 @@ const Button = styled.button`
   }
 `
 
-const PostButton = ({ onClick }) => (
-  <Button onClick={onClick}>
+const PostButton = ({ marginRight, onClick }) => (
+  <Button marginRight={marginRight} onClick={onClick}>
     Post
   </Button>
 )
