@@ -11,6 +11,8 @@ import {
   white,
 } from 'styling/vars'
 
+global.moment = moment
+
 const DAYS_OF_WEEK = ['S', 'M','T','W','T','F','S']
 const DEFAULT_DAY_COLOR = lightGrey
 const DAY_COLOR_MAP = {
@@ -70,8 +72,9 @@ class MuCalendar extends Component {
     const now = moment()
     const days = []
 
-    // Start the iterator on the first Sunday before the 2nd
-    const iterator = moment().subtract(now.date() + now.day() - 1, 'd')
+    // Start the iterator on the first Sunday on or before the 1nd
+    const iterator = moment().subtract(now.date() - 1, 'd')
+    iterator.subtract(iterator.day(), 'd')
 
     while (
         iterator < now ||
