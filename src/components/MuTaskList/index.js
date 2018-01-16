@@ -35,10 +35,11 @@ const Task = styled.button`
   margin-top: 12px;
   margin-bottom: 24px;
   background: none;
-  color: ${black};
   cursor: pointer;
   font-size: 18px;
   font-weight: 400;
+  color: ${({ optimistic }) => optimistic ? grey : black};
+  pointer-events: ${({ optimistic }) => optimistic ? 'none' : 'auto'};
 
   :hover, :focus {
     outline: none;
@@ -67,6 +68,14 @@ class MuTaskList extends Component {
     this.props.mutate({
       mutation: createTaskMutation,
       variables: { content: this.state.newTask },
+      optimisticResponse: {
+        task: {
+          id: Math.round(Math.random() * -1000000),
+          createdAt: +new Date(),
+          content: this.state.newTask,
+          __typename: 'Task',
+        }
+      },
       update: (proxy, { data: { task } }) => {
         const data = proxy.readQuery({ query: todayQuery });
 
@@ -92,7 +101,11 @@ class MuTaskList extends Component {
             placeholder="Add a task"
             value={newTask} />
       </form>
-      {tasks.map(({ content, id }) => <Task key={id}>{content}</Task>)}
+      {tasks.map(({ content, id }) => <Task
+          key={id}
+          optimistic={id < 0}>
+        {content}
+      </Task>)}
     </Container>
   }
 }
