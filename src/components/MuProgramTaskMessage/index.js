@@ -16,6 +16,7 @@ const Container = styled.div`
   border: 1px ${lightGrey} solid;
   margin-bottom: 12px;
   border-radius: 10px;
+  font-size: 18px;
 `
 
 const getText = (tasksLeft) =>

@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -49,7 +50,7 @@ const MuPost = ({ content, createdAt, isLast }) => (
     <MuAvatar />
     <DetailsContainer>
       <Content>{content}</Content>
-      <Meta>Posted at {createdAt}</Meta>
+      <Meta>Posted on {moment(createdAt).format('MMM Do [at] h:mm A')}</Meta>
     </DetailsContainer>
   </Container>
 )
