@@ -39,7 +39,7 @@ class MuClock extends Component {
 
   render () {
     return <Time>
-      {this.state.now.format('h:m A')}
+      {this.state.now.format('h:mm A')}
     </Time>
   }
 }

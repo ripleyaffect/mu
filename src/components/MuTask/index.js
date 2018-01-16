@@ -18,6 +18,8 @@ const Container = styled.button`
   font-weight: 400;
   color: ${({ optimistic }) => optimistic ? grey : black};
   pointer-events: ${({ optimistic }) => optimistic ? 'none' : 'auto'};
+  text-align: left;
+  line-height: 24px;
 
   :hover, :focus {
     outline: none;
