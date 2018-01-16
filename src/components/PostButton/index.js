@@ -26,8 +26,8 @@ const Button = styled.button`
   }
 `
 
-const PostButton = () => (
-  <Button>
+const PostButton = ({ onClick }) => (
+  <Button onClick={onClick}>
     Post
   </Button>
 )

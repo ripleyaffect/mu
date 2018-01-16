@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled, { injectGlobal } from 'styled-components'
 import normalize from 'styled-normalize'
 
@@ -22,13 +22,34 @@ const Container = styled.div`
   height: 100vh;
 `
 
-const App = () => (
-  <Container>
-    {globalStyles}
-    <MuModal />
-    <MuHeader />
-    <MuBody />
-  </Container>
-)
+class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.openPostModal = this.openPostModal.bind(this)
+    this.closePostModal = this.closePostModal.bind(this)
+
+    this.state = { addingPost: false }
+  }
+
+  openPostModal () {
+    this.setState({ addingPost: true })
+  }
+
+  closePostModal () {
+    this.setState({ addingPost: false })
+  }
+
+  render () {
+    const { addingPost } = this.state
+
+    return <Container>
+      {globalStyles}
+      {addingPost && <MuModal onClose={this.closePostModal} />}
+      <MuHeader onClickPost={this.openPostModal} />
+      <MuBody />
+    </Container>
+  }
+}
 
 export default App
