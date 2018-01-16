@@ -67,8 +67,9 @@ class MuToday extends Component {
         <Title>Today</Title>
         <Subtitle>{dateFormatted}</Subtitle>
         {!loading && tasks && <MuTaskList tasks={tasks} />}
-        {!loading && programTasks && programTasks.length &&
-          <MuProgramTaskList programTasks={programTasks} />}
+        {!loading && <MuProgramTaskList
+            tasksLeft={tasks.length}
+            programTasks={[]} />}
         {!loading && posts && <MuTimeline posts={posts} />}
       </MuPrimary>
       <MuSecondary>

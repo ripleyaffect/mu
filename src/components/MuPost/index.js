@@ -34,6 +34,7 @@ const Content = styled.p`
   margin-bottom: 4px;
   font-size: 18px;
   font-weight: 400;
+  line-height: 24px;
 `
 
 const Meta = styled.span`

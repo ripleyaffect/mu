@@ -20,7 +20,9 @@ const NewPost = styled.textarea`
   flex: 1;
   width: 100%;
   border: none;
+  font-family: 'Work Sans', sans-serif;
   font-size: 18px;
+  line-height: 24px;
   resize: none;
 
   :focus {
