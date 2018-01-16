@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import MuDay from 'components/MuDay'
+import MuToday from 'components/MuToday'
 import MuSecondary from 'components/MuSecondary'
 
 const OuterContainer = styled.div`
@@ -23,8 +23,7 @@ const InnerContainer = styled.div`
 const MuBody = () => (
   <OuterContainer>
     <InnerContainer>
-      <MuDay />
-      <MuSecondary />
+      <MuToday />
     </InnerContainer>
   </OuterContainer>
 )

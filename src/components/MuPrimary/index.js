@@ -5,12 +5,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: salmon;
 `
 
-const MuPrimary = () => (
+const MuPrimary = ({ children }) => (
   <Container>
-
+    {children}
   </Container>
 )
 
