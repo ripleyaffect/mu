@@ -1,0 +1,10 @@
+mutation createTask($content: String!) {
+  task: createTask(
+    userId: ""
+    content: $content
+  ) {
+    id
+    content
+    createdAt
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { graphql } from 'react-apollo'
 
 import { black, grey } from 'styling/vars'
 

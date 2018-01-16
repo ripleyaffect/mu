@@ -1,7 +1,23 @@
-import React from 'react'
+import moment from 'moment'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import { colorMap, lightGrey, purple, purpleBoxShadow, white } from 'styling/vars'
+import {
+  black,
+  grey,
+  lightGrey,
+  purple,
+  purpleBoxShadow,
+  white,
+} from 'styling/vars'
+
+const DAYS_OF_WEEK = ['S', 'M','T','W','T','F','S']
+const DEFAULT_DAY_COLOR = lightGrey
+const DAY_COLOR_MAP = {
+  week: black,
+  today: white,
+  month: grey,
+}
 
 const Container = styled.div`
   display: flex;
@@ -22,23 +38,63 @@ const Day = styled.span`
   font-size: 13px;
   font-weight: 400;
 
-  background-color: ${({ active }) => active ? purple : white};
-  box-shadow: ${({ active }) => active ? purpleBoxShadow : 'none'};
-  color: ${({ active, color }) => active ? white : colorMap[color]};
+  background-color: ${({ type }) => type === 'today' ? purple : white};
+  box-shadow: ${({ type }) => type === 'today' ? purpleBoxShadow : 'none'};
+  color: ${({ type }) => DAY_COLOR_MAP[type] || DEFAULT_DAY_COLOR};
 `
 
-const daysOfWeek = ['S', 'M','T','W','T','F','S']
-const prevMonthDays = [31]
-const currentMonthDays = Array.apply(null, Array(31))
-const nextMonthDays = [1, 2, 3]
+class MuCalendar extends Component {
+  constructor (props) {
+    super(props)
 
-const MuCalendar = () => (
-  <Container>
-    {daysOfWeek.map((day, index) => <Day key={index}>{day}</Day>)}
-    {prevMonthDays.map((day, index) => <Day color="lightGrey" key={index}>{day}</Day>)}
-    {currentMonthDays.map((day, index) => <Day active={index === 13} color="grey" key={index}>{index + 1}</Day>)}
-    {nextMonthDays.map((day, index) => <Day color="lightGrey" key={index}>{day}</Day>)}
-  </Container>
-)
+    this.getDayType = this.getDayType.bind(this)
+    this.generateDays = this.generateDays.bind(this)
+
+    this.state = {
+      days: this.generateDays(),
+    }
+  }
+
+  getDayType(now, day) {
+    if (now.month() === day.month()) {
+      if (now.date() == day.date()) {
+        return 'today'
+      }
+      return 'month'
+    }
+
+    return 'other'
+  }
+
+  generateDays () {
+    const now = moment()
+    const days = []
+
+    // Start the iterator on the first Sunday before the 2nd
+    const iterator = moment().subtract(now.date() + now.day() - 1, 'd')
+
+    while (
+        iterator < now ||
+        iterator.month() <= now.month() ||
+        iterator.day() !== 0) {
+      days.push({
+        type: this.getDayType(now, iterator),
+        date: iterator.date()
+      })
+      iterator.add(1, 'd')
+    }
+
+    return days
+  }
+
+  render () {
+    const { days } = this.state
+
+    return <Container>
+      {DAYS_OF_WEEK.map((day, index) => <Day type="week" key={index}>{day}</Day>)}
+      {days.map((day, index) => <Day {...day} key={index}>{day.date}</Day>)}
+    </Container>
+  }
+}
 
 export default MuCalendar

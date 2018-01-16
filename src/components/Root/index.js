@@ -5,8 +5,6 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { ApolloProvider } from 'react-apollo'
 
-import userTasksQuery from '~graphql/queries/userTasks.gql'
-
 const uri = 'https://api.graph.cool/simple/v1/mu'
 
 const client = new ApolloClient({
@@ -14,9 +12,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-client.query({ query: userTasksQuery }).then(result => console.log(result.data))
-
-import App from '../App'
+import App from 'components/App'
 
 const Root = () => (
   <ApolloProvider client={client}>

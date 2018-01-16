@@ -13,7 +13,7 @@ import MuTaskList from 'components/MuTaskList'
 import MuTimeline from 'components/MuTimeline'
 import MuWeather from 'components/MuWeather'
 
-import userTasksQuery from '~graphql/queries/userTasks.gql'
+import todayQuery from '~graphql/queries/today.gql'
 
 import { grey } from 'styling/vars'
 
@@ -41,6 +41,14 @@ const Subtitle = styled.h4`
 class MuToday extends Component {
   constructor (props) {
     super(props)
+
+    this.state = {
+      dateFormatted: moment().format('MMMM Do, YYYY')
+    }
+  }
+
+  handleCreateTask (content) {
+    const { mutate } = this.props
   }
 
   render () {
@@ -52,11 +60,12 @@ class MuToday extends Component {
         tasks,
       }
     } = this.props
+    const { dateFormatted } = this.state
 
     return <Container>
       <MuPrimary>
         <Title>Today</Title>
-        <Subtitle>January 14th, 2017</Subtitle>
+        <Subtitle>{dateFormatted}</Subtitle>
         {!loading && <MuTaskList tasks={tasks} />}
         {!loading && programTasks && programTasks.length &&
           <MuProgramTaskList programTasks={programTasks} />}
@@ -71,4 +80,4 @@ class MuToday extends Component {
   }
 }
 
-export default graphql(userTasksQuery)(MuToday)
+export default graphql(todayQuery)(MuToday)
