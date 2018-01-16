@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo'
 
@@ -44,11 +44,43 @@ const Task = styled.button`
   }
 `
 
-const MuTaskList = ({ tasks }) => (
-  <Container>
-    <Input placeholder="Add a task" />
-    {tasks.map(({ content, id }) => <Task key={id}>{content}</Task>)}
-  </Container>
-)
+class MuTaskList extends Component {
+  constructor (props) {
+    super(props)
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+
+    this.state = { newTask: '' }
+  }
+
+  handleChange (event) {
+    this.setState({ newTask: event.target.value })
+  }
+
+  handleSubmit (event) {
+    event.preventDefault()
+
+    console.log(this.state.newTask)
+
+    // Reset value
+    this.setState({ newTask: '' })
+  }
+
+  render () {
+    const { tasks } = this.props
+    const { newTask } = this.state
+
+    return <Container>
+      <form onSubmit={this.handleSubmit}>
+        <Input
+            onChange={this.handleChange}
+            placeholder="Add a task"
+            value={newTask} />
+      </form>
+      {tasks.map(({ content, id }) => <Task key={id}>{content}</Task>)}
+    </Container>
+  }
+}
 
 export default MuTaskList
