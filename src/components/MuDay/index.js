@@ -1,9 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { graphql } from 'react-apollo';
 
 import MuTaskList from 'components/MuTaskList'
 import MuPost from 'components/MuPost'
 import MuProgramTask from 'components/MuProgramTask'
+
+import userTasksQuery from '~graphql/queries/userTasks.gql'
 
 import { grey } from 'styling/vars'
 
@@ -37,30 +40,25 @@ const Subtitle = styled.h4`
   color: ${grey};
 `
 
-const tasks = [
-  { id: 1, content: 'Test one' },
-  { id: 2, content: 'Test two' },
-  { id: 3, content: 'Test three' },
-  { id: 4, content: 'Test four' },
-]
+const MuDay = ({ data: { tasks, posts, loading } }) => {
+  const lastPostIndex = loading ? 0 : posts.length - 1
 
-const MuDay = () => (
-  <Container>
+  return <Container>
     <Title>Today</Title>
     <Subtitle>January 14th, 2017</Subtitle>
-    <MuTaskList tasks={tasks} />
-    <ProgramTasks>
+    {!loading && <MuTaskList tasks={tasks} />}
+    {/* <ProgramTasks>
       <MuProgramTask />
       <MuProgramTask />
       <MuProgramTask />
-    </ProgramTasks>
-    <Posts>
-      <MuPost />
-      <MuPost />
-      <MuPost />
-      <MuPost isLast={true} />
-    </Posts>
+    </ProgramTasks> */}
+    {!loading && <Posts>
+      {posts.map((post, index) => <MuPost
+          {...post}
+          isLast={index === lastPostIndex}
+          key={post.id} />)}
+    </Posts>}
   </Container>
-)
+}
 
-export default MuDay
+export default graphql(userTasksQuery)(MuDay)

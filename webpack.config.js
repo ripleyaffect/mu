@@ -13,7 +13,12 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ['babel-loader']
-      }
+      },
+      {
+        test: /\.g(raph)?ql$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      },
     ]
   },
 
@@ -21,7 +26,8 @@ module.exports = {
     alias: {
       assets: path.join(__dirname, '/src/assets'),
       components: path.join(__dirname, '/src/components'),
-      styling: path.join(__dirname, '/src/styling')
+      '~graphql': path.join(__dirname, '/src/graphql'),
+      styling: path.join(__dirname, '/src/styling'),
     }
   }
 }

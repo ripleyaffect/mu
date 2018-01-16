@@ -1,0 +1,13 @@
+{
+  tasks: allTasks(orderBy: createdAt_ASC) {
+    id
+    createdAt
+    content
+  }
+
+  posts: allPosts(orderBy: createdAt_DESC) {
+    id
+    createdAt
+    content
+  }
+}

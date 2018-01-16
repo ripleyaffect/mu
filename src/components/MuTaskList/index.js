@@ -46,9 +46,7 @@ const Task = styled.button`
 const MuTaskList = ({ tasks }) => (
   <Container>
     <Input placeholder="Add a task" />
-    {tasks.map(({ content, id }) => <Task key={id}>
-      {content}&nbsp;
-    </Task>)}
+    {tasks.map(({ content, id }) => <Task key={id}>{content}</Task>)}
   </Container>
 )
 

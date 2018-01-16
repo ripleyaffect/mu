@@ -42,13 +42,13 @@ font-size: 13px;
 font-weight: 500;
 `
 
-const MuPost = ({ isLast }) => (
+const MuPost = ({ content, createdAt, isLast }) => (
   <Container>
     {!isLast && <Connector />}
     <MuAvatar />
     <DetailsContainer>
-      <Content>Test test test</Content>
-      <Meta>Posted at 4:31 PM</Meta>
+      <Content>{content}</Content>
+      <Meta>Posted at {createdAt}</Meta>
     </DetailsContainer>
   </Container>
 )
