@@ -10,6 +10,7 @@ import MuClock from 'components/MuClock'
 import MuPost from 'components/MuPost'
 import MuProgramTask from 'components/MuProgramTask'
 import MuTaskList from 'components/MuTaskList'
+import MuTimeline from 'components/MuTimeline'
 import MuWeather from 'components/MuWeather'
 
 import userTasksQuery from '~graphql/queries/userTasks.gql'
@@ -23,10 +24,6 @@ const Container = styled.div`
 
 const ProgramTasks = styled.div`
   margin-bottom: 36px;
-`
-
-const Posts = styled.div`
-  margin-bottom: 60px;
 `
 
 const Title  = styled.h1`
@@ -45,7 +42,7 @@ const Subtitle = styled.h4`
   color: ${grey};
 `
 
-const MuDay = ({ data: { tasks, posts, loading } }) => {
+const MuToday = ({ data: { tasks, posts, loading } }) => {
   const lastPostIndex = loading ? 0 : posts.length - 1
 
   return <Container>
@@ -58,12 +55,7 @@ const MuDay = ({ data: { tasks, posts, loading } }) => {
         <MuProgramTask />
         <MuProgramTask />
       </ProgramTasks> */}
-      {!loading && <Posts>
-        {posts.map((post, index) => <MuPost
-            {...post}
-            isLast={index === lastPostIndex}
-            key={post.id} />)}
-      </Posts>}
+      {!loading && <MuTimeline posts={posts} />}
     </MuPrimary>
     <MuSecondary>
       <MuClock />
@@ -73,4 +65,4 @@ const MuDay = ({ data: { tasks, posts, loading } }) => {
   </Container>
 }
 
-export default graphql(userTasksQuery)(MuDay)
+export default graphql(userTasksQuery)(MuToday)
