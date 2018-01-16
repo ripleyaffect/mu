@@ -4,6 +4,7 @@ import normalize from 'styled-normalize'
 
 import MuBody from 'components/MuBody'
 import MuHeader from 'components/MuHeader'
+import MuModal from 'components/MuModal'
 
 // Define global styles
 const globalStyles = injectGlobal`
@@ -24,6 +25,7 @@ const Container = styled.div`
 const App = () => (
   <Container>
     {globalStyles}
+    <MuModal />
     <MuHeader />
     <MuBody />
   </Container>
