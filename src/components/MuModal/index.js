@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import MuIcon from 'components/MuIcon'
 import { black, blackBoxShadow, grey } from 'styling/vars'
 import { setAlpha } from 'styling/utils'
 
@@ -37,17 +38,19 @@ const CloseButton = styled.button`
   color: ${grey};
   cursor: pointer;
 
-  :hover {
+  :hover, :focus {
+    outline: none;
     color: ${black};
   }
 `
 
-const MuModal = ({ onClose }) => (
-  <Curtain>
-    <Modal>
+const MuModal = ({ children, onClose }) => (
+  <Curtain onClick={onClose}>
+    <Modal onClick={e => e.stopPropagation()}>
       <CloseButton onClick={onClose}>
-        X
+        <MuIcon name="close" />
       </CloseButton>
+      {children}
     </Modal>
   </Curtain>
 )
