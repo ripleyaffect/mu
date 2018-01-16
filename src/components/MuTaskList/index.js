@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo'
 
+import createTaskMutation from '~graphql/mutations/createTask.gql'
+import todayQuery from '~graphql/queries/today.gql'
 import { black, grey } from 'styling/vars'
 
 const Container = styled.div`
@@ -62,6 +64,18 @@ class MuTaskList extends Component {
     event.preventDefault()
 
     console.log(this.state.newTask)
+    this.props.mutate({
+      mutation: createTaskMutation,
+      variables: { content: this.state.newTask },
+      update: (proxy, { data: { task } }) => {
+        const data = proxy.readQuery({ query: todayQuery });
+
+        // Add the task
+        data.tasks.push(task);
+
+        proxy.writeQuery({ query: todayQuery, data });
+      }
+    })
 
     // Reset value
     this.setState({ newTask: '' })
@@ -83,4 +97,4 @@ class MuTaskList extends Component {
   }
 }
 
-export default MuTaskList
+export default graphql(createTaskMutation)(MuTaskList)

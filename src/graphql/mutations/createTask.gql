@@ -1,6 +1,6 @@
 mutation createTask($content: String!) {
   task: createTask(
-    userId: ""
+    userId: "cjcfh7n5zs1960115a5kuqph1" # Hardcoded for now
     content: $content
   ) {
     id
