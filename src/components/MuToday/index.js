@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo';
@@ -38,8 +39,19 @@ const Subtitle = styled.h4`
 `
 
 class MuToday extends Component {
+  constructor (props) {
+    super(props)
+  }
+
   render () {
-    const { data: { loading, posts, programTasks, tasks } } = this.props
+    const {
+      data: {
+        loading,
+        posts,
+        programTasks,
+        tasks,
+      }
+    } = this.props
 
     return <Container>
       <MuPrimary>

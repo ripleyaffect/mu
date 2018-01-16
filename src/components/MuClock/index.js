@@ -1,7 +1,10 @@
-import React from 'react'
+import moment from 'moment'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const Time = styled.h3`
+const SECOND_INTERVAL = 1
+
+const Time = styled.h2`
   display: flex;
   justify-content: flex-end;
   width: 100%;
@@ -12,10 +15,33 @@ const Time = styled.h3`
   font-weight: 500;
 `
 
-const MuClock = () => (
-  <Time>
-    1:00 PM
-  </Time>
-)
+class MuClock extends Component {
+  constructor (props) {
+    super(props)
+
+    this.tick = this.tick.bind(this)
+
+    this.state = {
+      now: moment(),
+      interval: setInterval(this.tick, SECOND_INTERVAL * 1000),
+    }
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.state.interval)
+  }
+
+  tick () {
+    this.setState({
+      now: moment()
+    })
+  }
+
+  render () {
+    return <Time>
+      {this.state.now.format('h:m A')}
+    </Time>
+  }
+}
 
 export default MuClock
