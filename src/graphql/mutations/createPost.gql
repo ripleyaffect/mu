@@ -1,0 +1,10 @@
+mutation createPost($content: String!) {
+  post: createPost(
+    userId: "cjcfh7n5zs1960115a5kuqph1" # TODO: Use auth on server side
+    content: $content
+  ) {
+    id
+    content
+    createdAt
+  }
+}
