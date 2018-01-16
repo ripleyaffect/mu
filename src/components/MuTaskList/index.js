@@ -19,9 +19,14 @@ const Input = styled.input`
   border: none;
   font-size: 18px;
   font-weight: 400;
+  width: 100%;
 
   :hover, :focus {
     outline: none;
+  }
+
+  &[value=""] {
+    width: auto;
   }
 
   ::placeholder {
