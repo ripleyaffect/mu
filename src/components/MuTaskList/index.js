@@ -51,14 +51,20 @@ class MuTaskList extends Component {
   handleSubmit (event) {
     event.preventDefault()
 
+    const { newTask } = this.state
+
+    if (!newTask) {
+      return
+    }
+
     this.props.mutate({
       mutation: createTaskMutation,
-      variables: { content: this.state.newTask },
+      variables: { content: newTask },
       optimisticResponse: {
         task: {
           id: Math.round(Math.random() * -1000000),
           createdAt: +new Date(),
-          content: this.state.newTask,
+          content: newTask,
           __typename: 'Task',
         }
       },
