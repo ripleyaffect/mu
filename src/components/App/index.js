@@ -6,6 +6,8 @@ import MuBody from 'components/MuBody'
 import MuHeader from 'components/MuHeader'
 import MuPostModal from 'components/MuPostModal'
 
+const USER_IMAGE_URL = 'https://avatars0.githubusercontent.com/u/1026406?s=200'
+
 // Define global styles
 const globalStyles = injectGlobal`
   ${normalize}
@@ -29,25 +31,37 @@ class App extends Component {
     this.openPostModal = this.openPostModal.bind(this)
     this.closePostModal = this.closePostModal.bind(this)
 
-    this.state = { addingPost: false }
+    this.state = {
+      newPostDetails: null
+    }
   }
 
-  openPostModal () {
-    this.setState({ addingPost: true })
+  openPostModal (task) {
+    const newPostDetails = {
+      imageUrl: task ? task.program.imageUrl : USER_IMAGE_URL,
+      prompt: task && task.prompt || "What's on your mind?",
+      subscriptionTaskId: task ? task.id : null,
+      title: task ? task.title : null,
+    }
+    this.setState({ newPostDetails })
   }
 
   closePostModal () {
-    this.setState({ addingPost: false })
+    this.setState({ newPostDetails: null })
   }
 
   render () {
-    const { addingPost } = this.state
+    const { newPostDetails } = this.state
 
     return <Container>
       {globalStyles}
-      {addingPost && <MuPostModal onClose={this.closePostModal} />}
-      <MuHeader onClickPost={this.openPostModal} />
-      <MuBody />
+      {newPostDetails && <MuPostModal
+          {...newPostDetails}
+          onClose={this.closePostModal} />}
+      <MuHeader
+          avatarImageUrl={USER_IMAGE_URL}
+          onClickPost={this.openPostModal} />
+      <MuBody onLogTask={this.openPostModal} />
     </Container>
   }
 }

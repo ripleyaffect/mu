@@ -9,10 +9,10 @@ const Container = styled.div`
   padding-right: 24px;
 `
 
-const Right = ({ onClickPost }) => (
+const Right = ({ avatarImageUrl, onClickPost }) => (
   <Container>
-    <PostButton marginRight={24} onClick={onClickPost} />
-    <MuAvatar />
+    <PostButton marginRight={24} onClick={(e) => onClickPost()} />
+    <MuAvatar imageUrl={avatarImageUrl} />
   </Container>
 )
 

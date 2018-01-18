@@ -20,10 +20,10 @@ const InnerContainer = styled.div`
   padding-top: 48px;
 `
 
-const MuBody = () => (
+const MuBody = ({ onLogTask }) => (
   <OuterContainer>
     <InnerContainer>
-      <MuToday />
+      <MuToday onLogTask={onLogTask} />
     </InnerContainer>
   </OuterContainer>
 )

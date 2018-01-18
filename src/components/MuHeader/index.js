@@ -18,10 +18,10 @@ const Header = styled.header`
   z-index: 2;
 `
 
-const MuHeader = ({ onClickPost }) => (
+const MuHeader = ({ avatarImageUrl, onClickPost }) => (
   <Header>
     <Left />
-    <Right onClickPost={onClickPost} />
+    <Right avatarImageUrl={avatarImageUrl} onClickPost={onClickPost} />
   </Header>
 )
 

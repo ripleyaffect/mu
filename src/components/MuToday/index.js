@@ -58,7 +58,8 @@ class MuToday extends Component {
         posts,
         tasks,
         todos,
-      }
+      },
+      onLogTask,
     } = this.props
     const { dateFormatted } = this.state
 
@@ -68,6 +69,7 @@ class MuToday extends Component {
         <Subtitle>{dateFormatted}</Subtitle>
         {!loading && todos && <MuTodoList todos={todos} />}
         {!loading && <MuProgramTaskList
+            onClickTask={onLogTask}
             todosLeft={todos.length}
             tasks={tasks} />}
         {!loading && posts && <MuTimeline posts={posts} />}

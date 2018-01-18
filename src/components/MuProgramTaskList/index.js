@@ -8,10 +8,11 @@ const Container = styled.div`
 margin-bottom: 36px;
 `
 
-const MuProgramTaskList = ({ tasks, todosLeft }) => (
+const MuProgramTaskList = ({ onClickTask, tasks, todosLeft }) => (
   <Container>
     {tasks.map((task) => <MuProgramTask
         {...task}
+        onClick={onClickTask}
         key={task.id} />)}
     {tasks.length === 0 && <MuProgramTaskMessage todosLeft={todosLeft} />}
   </Container>

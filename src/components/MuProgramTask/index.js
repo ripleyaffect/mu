@@ -71,10 +71,17 @@ const Button = styled.span`
 `
 
 const MuProgramTask = ({
+    id,
+    onClick,
     programTask: { title },
     subscription: { program },
 }) => (
-  <Container>
+  <Container
+      onClick={(e) => onClick({
+        program,
+        subscriptionTaskId: id,
+        title,
+      })}>
     <Icon imageUrl={program.imageUrl} />
     <DetailsContainer>
       <DisplayName>{title}</DisplayName>

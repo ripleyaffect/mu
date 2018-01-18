@@ -7,13 +7,33 @@ import MuModal from 'components/MuModal'
 import PostButton from 'components/PostButton'
 import createPostMutation from '~graphql/mutations/createPost.gql'
 import todayQuery from '~graphql/queries/today.gql'
-import { grey } from 'styling/vars'
+import { black, blackBoxShadow, grey } from 'styling/vars'
+
+const Image = styled.div`
+  height: 72px;
+  width: 72px;
+  border-radius: 50%;
+  margin-bottom: 24px;
+  background-color: ${grey};
+  background-image: url('${({src}) => src}');
+  background-size: cover;
+  box-shadow: ${blackBoxShadow};
+`
+
+const Title = styled.h3`
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: ${black};
+  font-weight: 500;
+`
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  height: 100%;
+  height: 200px;
+  width: 100%;
 `
 
 const NewPost = styled.textarea`
@@ -83,11 +103,13 @@ class MuPostModal extends Component {
   }
 
   render () {
-    const { onClose } = this.props
+    const { imageUrl, onClose, prompt, title } = this.props
 
     return <MuModal onClose={onClose}>
+      <Image src={imageUrl} />
+      {title && <Title>{title}</Title>}
       <Form onSubmit={this.handleSubmit}>
-        <NewPost onChange={this.handleChange} placeholder="Write new post" />
+        <NewPost onChange={this.handleChange} placeholder={prompt} />
         <PostButton />
       </Form>
     </MuModal>

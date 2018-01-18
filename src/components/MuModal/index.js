@@ -18,9 +18,11 @@ const Curtain = styled.div`
 `
 
 const Modal = styled.div`
+  display: flex;
+  flex-direction: column;
   position: relative;
   background-color: white;
-  height: 200px;
+  height: fit-content;
   width: 675px;
   max-width: 100%;
   padding: 36px;

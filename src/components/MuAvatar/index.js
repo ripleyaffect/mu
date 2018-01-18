@@ -21,10 +21,8 @@ const Avatar = styled.div`
   background-size: cover;
 `
 
-const MuAvatar = ({ initials }) => (
-  // TODO: pass from user
-  <Avatar
-      imageUrl={'https://avatars0.githubusercontent.com/u/1026406?s=200'} />
+const MuAvatar = ({ imageUrl }) => (
+  <Avatar imageUrl={imageUrl} />
 )
 
 export default MuAvatar
