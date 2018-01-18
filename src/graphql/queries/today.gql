@@ -1,7 +1,11 @@
 query today($completedAt: DateTime) {
   # We pass an empty variable for NULL
   todos: allTodoes(
-    filter: { completedAt: $completedAt }
+    filter: {
+      completedAt: $completedAt
+      # TODO: Change to auth
+      user: { id: "cjcfh7n5zs1960115a5kuqph1" }
+    }
     orderBy: createdAt_ASC
   ) {
     id
@@ -9,7 +13,37 @@ query today($completedAt: DateTime) {
     content
   }
 
+  tasks: allSubscriptionTasks(
+    filter: {
+      completedAt: $completedAt
+      subscription: {
+        # TODO: Change to auth
+        completedAt: $completedAt
+        endedAt: $completedAt
+        user: { id: "cjcfh7n5zs1960115a5kuqph1" }
+      }
+    }
+  ) {
+    id
+    createdAt
+    programTask {
+      id
+      title
+    }
+    subscription {
+      program {
+        id
+        title
+        imageUrl
+      }
+    }
+  }
+
   posts: allPosts(
+    filter: {
+      # TODO: Change to auth
+      user: { id: "cjcfh7n5zs1960115a5kuqph1" }
+    }
     orderBy: createdAt_DESC
   ) {
     id

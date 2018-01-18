@@ -30,6 +30,8 @@ const Icon = styled.div`
   margin-left: 18px;
   background-color: ${lightGrey};
   box-shadow: ${blackBoxShadow};
+  background-image: url('${({ imageUrl }) => imageUrl}');
+  background-size: cover;
 `
 
 const DetailsContainer = styled.div`
@@ -68,14 +70,17 @@ const Button = styled.span`
   }
 `
 
-const MuProgramTask = () => (
+const MuProgramTask = ({
+    programTask: { title },
+    subscription: { program },
+}) => (
   <Container>
-    <Icon />
+    <Icon imageUrl={program.imageUrl} />
     <DetailsContainer>
-      <DisplayName>Test</DisplayName>
-      <ProgramDisplayName>Test Program</ProgramDisplayName>
+      <DisplayName>{title}</DisplayName>
+      <ProgramDisplayName>{program.title}</ProgramDisplayName>
     </DetailsContainer>
-    <Button>Details</Button>
+    <Button>Log</Button>
   </Container>
 )
 

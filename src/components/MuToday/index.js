@@ -56,7 +56,7 @@ class MuToday extends Component {
       data: {
         loading,
         posts,
-        programTasks,
+        tasks,
         todos,
       }
     } = this.props
@@ -69,7 +69,7 @@ class MuToday extends Component {
         {!loading && todos && <MuTodoList todos={todos} />}
         {!loading && <MuProgramTaskList
             todosLeft={todos.length}
-            programTasks={[]} />}
+            tasks={tasks} />}
         {!loading && posts && <MuTimeline posts={posts} />}
       </MuPrimary>
       <MuSecondary>

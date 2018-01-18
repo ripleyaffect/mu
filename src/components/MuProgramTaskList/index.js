@@ -8,12 +8,12 @@ const Container = styled.div`
 margin-bottom: 36px;
 `
 
-const MuProgramTaskList = ({ tasksLeft, programTasks }) => (
+const MuProgramTaskList = ({ tasks, todosLeft }) => (
   <Container>
-    {programTasks.map((programTask) => <MuProgramTask
-        {...programTask}
-        key={programTask.id} />)}
-    {programTasks.length === 0 && <MuProgramTaskMessage tasksLeft={tasksLeft} />}
+    {tasks.map((task) => <MuProgramTask
+        {...task}
+        key={task.id} />)}
+    {tasks.length === 0 && <MuProgramTaskMessage todosLeft={todosLeft} />}
   </Container>
 )
 

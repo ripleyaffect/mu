@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { black, blackBoxShadow } from 'styling/vars'
 
-const Circle = styled.div`
+const Avatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,12 +17,14 @@ const Circle = styled.div`
   font-size: 15px;
   font-weight: 500;
   box-shadow: ${blackBoxShadow};
+  background-image: url('${({ imageUrl }) => imageUrl}');
+  background-size: cover;
 `
 
 const MuAvatar = ({ initials }) => (
-  <Circle>
-    {initials || 'TP'}
-  </Circle>
+  // TODO: pass from user
+  <Avatar
+      imageUrl={'https://avatars0.githubusercontent.com/u/1026406?s=200'} />
 )
 
 export default MuAvatar
