@@ -1,5 +1,5 @@
 mutation createTask($content: String!) {
-  task: createTask(
+  todo: createTodo(
     userId: "cjcfh7n5zs1960115a5kuqph1" # TODO: Use auth on server side
     content: $content
   ) {

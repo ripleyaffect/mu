@@ -1,9 +1,0 @@
-mutation completeTask($id: ID!, $completedAt: DateTime!) {
-  task: updateTask(
-    id: $id,
-    completedAt: $completedAt
-  ) {
-    id
-    completedAt
-  }
-}

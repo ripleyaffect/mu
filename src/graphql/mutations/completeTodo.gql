@@ -1,0 +1,9 @@
+mutation completeTodo($id: ID!, $completedAt: DateTime!) {
+  todo: updateTodo(
+    id: $id,
+    completedAt: $completedAt
+  ) {
+    id
+    completedAt
+  }
+}

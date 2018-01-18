@@ -9,7 +9,7 @@ import MuSecondary from 'components/MuSecondary'
 import MuCalendar from 'components/MuCalendar'
 import MuClock from 'components/MuClock'
 import MuProgramTaskList from 'components/MuProgramTaskList'
-import MuTaskList from 'components/MuTaskList'
+import MuTodoList from 'components/MuTodoList'
 import MuTimeline from 'components/MuTimeline'
 import MuWeather from 'components/MuWeather'
 
@@ -57,7 +57,7 @@ class MuToday extends Component {
         loading,
         posts,
         programTasks,
-        tasks,
+        todos,
       }
     } = this.props
     const { dateFormatted } = this.state
@@ -66,9 +66,9 @@ class MuToday extends Component {
       <MuPrimary>
         <Title>Today</Title>
         <Subtitle>{dateFormatted}</Subtitle>
-        {!loading && tasks && <MuTaskList tasks={tasks} />}
+        {!loading && todos && <MuTodoList todos={todos} />}
         {!loading && <MuProgramTaskList
-            tasksLeft={tasks.length}
+            todosLeft={todos.length}
             programTasks={[]} />}
         {!loading && posts && <MuTimeline posts={posts} />}
       </MuPrimary>

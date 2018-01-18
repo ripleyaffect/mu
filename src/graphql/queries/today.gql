@@ -1,6 +1,6 @@
 query today($completedAt: DateTime) {
   # We pass an empty variable for NULL
-  tasks: allTasks(
+  todos: allTodoes(
     filter: { completedAt: $completedAt }
     orderBy: createdAt_ASC
   ) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo'
 
-import completeTaskMutation from '~graphql/mutations/completeTask.gql'
+import completeTodoMutation from '~graphql/mutations/completeTodo.gql'
 import todayQuery from '~graphql/queries/today.gql'
 import { black, grey } from 'styling/vars'
 
@@ -27,7 +27,7 @@ const Container = styled.button`
   }
 `
 
-class MuTask extends Component {
+class MuTodo extends Component {
   constructor (props) {
     super(props)
 
@@ -39,23 +39,23 @@ class MuTask extends Component {
     const completedAt = new Date().toISOString()
 
     this.props.mutate({
-      mutation: completeTaskMutation,
+      mutation: completeTodoMutation,
       variables: { id, completedAt },
       optimisticResponse: {
-        task: {
+        todo: {
           id,
           completedAt,
-          __typename: 'Task',
+          __typename: 'Todo',
         }
       },
-      update: (proxy, { data: { task } }) => {
+      update: (proxy, { data: { todo } }) => {
         const data = proxy.readQuery({
           query: todayQuery,
           variables: { completedAt: null },
         });
 
-        // remove the task
-        data.tasks = data.tasks.filter(task => task.id !== id);
+        // remove the todo
+        data.todos = data.todos.filter(todo => todo.id !== id);
 
         proxy.writeQuery({
           query: todayQuery,
@@ -75,4 +75,4 @@ class MuTask extends Component {
   }
 }
 
-export default graphql(completeTaskMutation)(MuTask)
+export default graphql(completeTodoMutation)(MuTodo)

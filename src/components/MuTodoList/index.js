@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo'
 
-import MuTask from 'components/MuTask'
-import createTaskMutation from '~graphql/mutations/createTask.gql'
+import MuTodo from 'components/MuTodo'
+import createTodoMutation from '~graphql/mutations/createTodo.gql'
 import todayQuery from '~graphql/queries/today.gql'
 import { black, grey } from 'styling/vars'
 
 const Container = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 26px;
   font-size: 18px;
   font-weight: 400;
 `
@@ -34,48 +34,48 @@ const Input = styled.input`
   }
 `
 
-class MuTaskList extends Component {
+class MuTodoList extends Component {
   constructor (props) {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
 
-    this.state = { newTask: '' }
+    this.state = { newTodo: '' }
   }
 
   handleChange (event) {
-    this.setState({ newTask: event.target.value })
+    this.setState({ newTodo: event.target.value })
   }
 
   handleSubmit (event) {
     event.preventDefault()
 
-    const { newTask } = this.state
+    const { newTodo } = this.state
 
-    if (!newTask) {
+    if (!newTodo) {
       return
     }
 
     this.props.mutate({
-      mutation: createTaskMutation,
-      variables: { content: newTask },
+      mutation: createTodoMutation,
+      variables: { content: newTodo },
       optimisticResponse: {
-        task: {
+        todo: {
           id: Math.round(Math.random() * -1000000),
           createdAt: +new Date(),
-          content: newTask,
-          __typename: 'Task',
+          content: newTodo,
+          __typename: 'Todo',
         }
       },
-      update: (proxy, { data: { task } }) => {
+      update: (proxy, { data: { todo } }) => {
         const data = proxy.readQuery({
           query: todayQuery,
           variables: { completedAt: null },
         });
 
-        // Add the task
-        data.tasks.push(task);
+        // Add the todo
+        data.todos.push(todo);
 
         proxy.writeQuery({
           query: todayQuery,
@@ -86,26 +86,26 @@ class MuTaskList extends Component {
     })
 
     // Reset value
-    this.setState({ newTask: '' })
+    this.setState({ newTodo: '' })
   }
 
   render () {
-    const { tasks } = this.props
-    const { newTask } = this.state
+    const { todos } = this.props
+    const { newTodo } = this.state
 
     return <Container>
       <form onSubmit={this.handleSubmit}>
         <Input
             onChange={this.handleChange}
-            placeholder="Add a task"
-            value={newTask} />
+            placeholder="Add an item"
+            value={newTodo} />
       </form>
-      {tasks.map(task => <MuTask
-          {...task}
-          key={task.id}
-          optimistic={task.id < 0} />)}
+      {todos.map(todo => <MuTodo
+          {...todo}
+          key={todo.id}
+          optimistic={todo.id < 0} />)}
     </Container>
   }
 }
 
-export default graphql(createTaskMutation)(MuTaskList)
+export default graphql(createTodoMutation)(MuTodoList)
