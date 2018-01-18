@@ -49,5 +49,13 @@ query today($completedAt: DateTime) {
     id
     createdAt
     content
+    task {
+      subscription {
+        program {
+          title
+          imageUrl
+        }
+      }
+    }
   }
 }

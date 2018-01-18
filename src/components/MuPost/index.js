@@ -44,13 +44,16 @@ font-size: 13px;
 font-weight: 500;
 `
 
-const MuPost = ({ content, createdAt, isLast }) => (
+const MuPost = ({ content, createdAt, isLast, task }) => (
   <Container>
     {!isLast && <Connector />}
-    <MuAvatar />
+    <MuAvatar imageUrl={task ? task.subscription.program.imageUrl : null} />
     <DetailsContainer>
       <Content>{content}</Content>
-      <Meta>Posted on {moment(createdAt).format('MMM Do [at] h:mm A')}</Meta>
+      <Meta>
+        Posted on {moment(createdAt).format('MMM Do [at] h:mm A')}
+        {task ? ` for ${task.subscription.program.title}` : ''}
+      </Meta>
     </DetailsContainer>
   </Container>
 )

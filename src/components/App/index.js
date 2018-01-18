@@ -39,8 +39,8 @@ class App extends Component {
   openPostModal (task) {
     const newPostDetails = {
       imageUrl: task ? task.program.imageUrl : USER_IMAGE_URL,
-      prompt: task && task.prompt || "What's on your mind?",
-      subscriptionTaskId: task ? task.id : null,
+      prompt: task ? task.prompt || `Log ${task.title}` : "What's on your mind?",
+      taskId: task ? task.id : null,
       title: task ? task.title : null,
     }
     this.setState({ newPostDetails })

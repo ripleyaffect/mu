@@ -71,16 +71,37 @@ class MuPostModal extends Component {
   handleSubmit (event) {
     event.preventDefault()
 
-    this.props.mutate({
+    const {
+      imageUrl,
+      mutate,
+      taskId,
+      title,
+    } = this.props
+
+    mutate({
       mutation: createPostMutation,
-      variables: { content: this.state.newPost },
+      variables: {
+        content: this.state.newPost,
+        taskId: taskId || null,
+      },
       optimisticResponse: {
         post: {
           id: Math.round(Math.random() * -1000000),
           createdAt: moment().format(),
           content: this.state.newPost,
+          task: {
+            subscription: {
+              program: {
+                title,
+                imageUrl,
+                __typename: 'Program',
+              },
+              __typename: 'Subscription',
+            },
+            __typename: 'SubscriptionTask',
+          },
           __typename: 'Post',
-        }
+        },
       },
       update: (proxy, { data: { post } }) => {
         const data = proxy.readQuery({

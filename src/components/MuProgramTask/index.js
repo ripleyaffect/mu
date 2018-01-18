@@ -78,8 +78,8 @@ const MuProgramTask = ({
 }) => (
   <Container
       onClick={(e) => onClick({
+        id,
         program,
-        subscriptionTaskId: id,
         title,
       })}>
     <Icon imageUrl={program.imageUrl} />

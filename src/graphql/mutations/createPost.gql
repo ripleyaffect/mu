@@ -1,10 +1,19 @@
-mutation createPost($content: String!) {
+mutation createPost($content: String!, $taskId: ID!) {
   post: createPost(
     userId: "cjcfh7n5zs1960115a5kuqph1" # TODO: Use auth on server side
     content: $content
+    taskId: $taskId
   ) {
     id
     content
     createdAt
+    task {
+      subscription {
+        program {
+          title
+          imageUrl
+        }
+      }
+    }
   }
 }
